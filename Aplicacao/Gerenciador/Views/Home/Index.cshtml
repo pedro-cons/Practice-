@@ -1,0 +1,20 @@
+﻿@{
+    TempData["Titulo"] = "Bem vindo";
+    Layout = "_LayoutHome";
+}
+
+<!-- Inicio Beneficios -->
+@await Html.PartialAsync("~/Views/Home/Secoes/_SecaoBeneficios.cshtml")
+<!-- Fim Beneficios -->
+
+<!-- Inicio Testemunhas -->
+@await Html.PartialAsync("~/Views/Home/Secoes/_SecaoTestemunhas.cshtml")
+<!-- Fim Testemunhas -->
+
+<!-- Inicio Empresas -->
+@await Html.PartialAsync("~/Views/Home/Secoes/_SecaoEmpresas.cshtml")
+<!-- Fim Empresas -->
+
+<!-- Inicio Preço -->
+@await Html.PartialAsync("~/Views/Home/Secoes/_SecaoPreco.cshtml")
+<!-- Fim Preço -->

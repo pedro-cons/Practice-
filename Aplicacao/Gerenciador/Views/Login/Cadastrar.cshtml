@@ -1,0 +1,66 @@
+﻿@model Dominio.ViewModels.UsuarioViewModel
+
+@{
+    TempData["Titulo"] = "Cadastrar";
+    Layout = "_LayoutLogin";
+}
+
+<div class="auth-fluid">
+    <div class="auth-fluid-form-box">
+        <div class="align-items-center d-flex h-100">
+            <div class="card-body">
+                <div class="auth-brand text-center text-lg-start">
+                    <a href="/Home" class="logo-dark">
+                        <span class="text-dark">Practice <img src="/assets/img/Logo-dark.png" alt="dark logo" height="100"></span>
+                    </a>
+                    <a href="/Home" class="logo-light">
+                        <span><img src="/assets/img/Logo-light.png" alt="logo" height="100"></span>
+                    </a>
+                </div>
+
+                <h4 class="mt-0">Cadastrar</h4>
+                <p class="text-muted mb-4 text-primary">Cadastre o seu usuário e senha para acessar o sistema.</p>
+
+                <form asp-action="Cadastrar" asp-controller="Login" method="post">
+                    <div class="col-md-12">
+                        <label asp-for="USU_STR_LOGIN"></label>
+                        <input type="text" class="form-control" asp-for="USU_STR_LOGIN" name="USU_STR_LOGIN">
+                        <span asp-validation-for="USU_STR_LOGIN" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-12">
+                        <label asp-for="USU_STR_SENHA"></label>
+                        <input type="password" class="form-control" asp-for="USU_STR_SENHA" name="USU_STR_SENHA">
+                        <span asp-validation-for="USU_STR_SENHA" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-12">
+                        <label asp-for="USU_STR_SENHA_CONFIRMAR"></label>
+                        <input type="password" class="form-control" asp-for="USU_STR_SENHA_CONFIRMAR" name="USU_STR_SENHA_CONFIRMAR">
+                        <span asp-validation-for="USU_STR_SENHA_CONFIRMAR" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-12">
+                        <label asp-for="USU_STR_WHATSAPP"></label>
+                        <input type="text" data-toggle="input-mask" data-mask-format="(00) 00000-0000" class="form-control" asp-for="USU_STR_WHATSAPP" name="USU_STR_WHATSAPP">
+                        <span asp-validation-for="USU_STR_WHATSAPP" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="d-grid mb-0 text-center">
+                        <button class="btn btn-success" type="submit"><i class="mdi mdi-login"></i> Cadastrar </button>
+                    </div>
+                </form>
+
+                <footer class="footer footer-alt">
+                    <p class="text-muted">Ficamos alegres em ter um novo usuário!</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <div class="auth-fluid-right text-center">
+        <div class="auth-user-testimonial">
+            <h2 class="mb-3">Bem Vindo!</h2>
+            <p class="lead">
+                É um prazer ver você por aqui.
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+﻿.alerta-position {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 2px 3px 0 rgb(136 136 136 / 30%);
+}
+
+.img-logo {
+    padding: 0.25rem;
+    background-color: var(--ct-thumbnail-bg);
+    border: 1px solid var(--ct-thumbnail-border-color);
+    position: relative;
+    bottom: 3rem;
+}

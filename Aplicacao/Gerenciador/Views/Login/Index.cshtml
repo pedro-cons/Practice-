@@ -1,0 +1,63 @@
+﻿@model Dominio.ViewModels.LoginViewModel
+
+@{
+    TempData["Titulo"] = "Entrar";
+    Layout = "_LayoutLogin";
+}
+
+<div class="auth-fluid">
+    <div class="auth-fluid-form-box">
+        <div class="align-items-center d-flex h-100">
+            <div class="card-body">
+                <div class="auth-brand text-center text-lg-start">
+                    <a href="/Home" class="logo-dark">
+                        <span class="text-dark">Practice <img src="/assets/img/Logo-dark.png" alt="dark logo" height="100"></span>
+                    </a>
+                    <a href="/Home" class="logo-light">
+                        <span><img src="/assets/img/Logo-light.png" alt="logo" height="100"></span>
+                    </a>
+                </div>
+
+                <h4 class="mt-0">Entrar</h4>
+                <p class="text-muted mb-4 text-primary">Digite o seu usuário e senha para acessar o sistema.</p>
+
+                <form asp-action="Login" asp-controller="Login" method="post">
+                    <div class="mb-3">
+                        <label asp-for="CNPJ_CPF"></label>
+                        <input type="text" class="form-control" asp-for="CNPJ_CPF" name="CNPJ_CPF">
+                        <span asp-validation-for="CNPJ_CPF" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <a href="/Login/EsqueceuSenha" class="text-muted float-end"><small>Esqueceu sua senha?</small></a>
+                        <label asp-for="Senha"></label>
+                        <input class="form-control" type="password" asp-for="Senha" name="Senha" id="Senha" placeholder="Digite sua senha.">
+                        <span asp-validation-for="Senha" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="checkbox-signin">
+                            <label class="form-check-label" for="checkbox-signin">Me Lembrar</label>
+                        </div>
+                    </div>
+                    <div class="d-grid mb-0 text-center">
+                        <button class="btn btn-success" type="submit"><i class="mdi mdi-login"></i> Entrar </button>
+                    </div>
+                </form>
+                <footer class="footer footer-alt">
+                    <p class="text-muted">Não possui uma conta? <a href="/Login/Cadastrar" class="text-muted ms-1"><b>Cadastrar</b></a></p>
+                </footer>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="auth-fluid-right text-center">
+        <div class="auth-user-testimonial">
+            <h2 class="mb-3">Bem Vindo!</h2>
+            <p class="lead">
+                É um prazer ver você por aqui. 
+            </p>
+        </div> 
+    </div>
+</div>

@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <title>@TempData["Titulo"] - @Dominio.Helpers.Configuracao.Aplicacao</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Uma aplicação com objetivo de evoluir o seu negócio" name="description" />
+    <meta content="@Dominio.Helpers.Configuracao.Aplicacao" name="author" />
+
+    <!-- Icone -->
+    <link rel="shortcut icon" href="~/favicon.ico">
+
+    <!-- Configuracao do Tema -->
+    <script src="~/assets/js/hyper-config.js"></script>
+
+    <!-- CSS Icones -->
+    <link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- CSS do App -->
+    <link href="~/assets/css/app-modern.min.css" rel="stylesheet" type="text/css" id="app-style" />
+
+    <!-- CSS Personalizado -->
+    <link href="~/assets/css/personalizado.css" rel="stylesheet" type="text/css" />
+    <style>
+        .auth-fluid .auth-fluid-left, .auth-fluid .auth-fluid-right {
+            width: 100%;
+            padding: 0px 0px 172px;
+            background: url(/assets/img/WallpaperHome.jpg) no-repeat bottom center scroll;
+            background-position: 30% 80%;
+            background-color: var(--bs-white);
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            -o-background-size: cover;
+        }
+
+        .auth-fluid {
+            background: none !important;
+        }
+    </style>
+</head>
+<body>
+    @await Html.PartialAsync("~/Views/Shared/Components/_Alertas.cshtml")
+
+    @RenderBody()
+
+    <!-- JS Jquery -->
+    <script src="~/assets/vendor/jquery/jquery.min.js"></script>
+
+    <!-- JS Vendor -->
+    <script src="~/assets/js/vendor.min.js"></script>
+
+    <!-- JS Máscaras -->
+    <script src="~/assets/vendor/jquery-mask-plugin/jquery.mask.min.js"></script>
+
+    <!-- JS do App -->
+    <script src="~/assets/js/app.min.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

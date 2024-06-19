@@ -1,0 +1,192 @@
+﻿@model Dominio.ViewModels.LojaViewModel
+
+@using Dominio.Enumeradores
+@using Dominio.Helpers
+
+@{
+    Type type = typeof(EEstado);
+    var enumer = Enum.GetValues(type);
+}
+
+<h4 class="header-title mb-4">Loja</h4>
+<input type="hidden" asp-for="LJA_INT_IDF" />
+<input type="hidden" asp-for="END_INT_IDF" />
+<input type="hidden" asp-for="LJA_BIT_ATIVO" />
+<input type="hidden" asp-for="LJA_BIN_FOTO" />
+<input type="hidden" asp-for="END_INT_IDF" />
+<input type="hidden" asp-for="Endereco.END_INT_IDF" />
+
+<div class="row mb-3">
+    <div class="col-12 col-md-6">
+        <label asp-for="LJA_STR_NOME" class="form-label"></label>
+        <input type="text" asp-for="LJA_STR_NOME" name="LJA_STR_NOME" id="LJA_STR_NOME" class="form-control" placeholder="Digite o nome da loja.">
+        <span asp-validation-for="LJA_STR_NOME" class="text-danger"></span>
+    </div>
+
+    @if (Model != null)
+    {
+        <div class="col-12 col-md-5">
+            <label asp-for="LJA_FILE_ARQUIVO" class="form-label"></label>
+            <input type="file" asp-for="LJA_FILE_ARQUIVO" name="LJA_FILE_ARQUIVO" id="LJA_FILE_ARQUIVO" class="form-control">
+            <span asp-validation-for="LJA_FILE_ARQUIVO" class="text-danger"></span>
+        </div>
+        <div class="col-12 col-md-1">
+            <label class="form-label">Logo Atual</label>
+            <img src="data:image/jpg;base64,@Convert.ToBase64String(Model.LJA_BIN_FOTO)" alt="Logo" height="50" width="50" class="me-2 rounded-circle">
+        </div>
+    }
+    else
+    {
+        <div class="col-12 col-md-6">
+            <label asp-for="LJA_FILE_ARQUIVO" class="form-label"></label>
+            <input type="file" asp-for="LJA_FILE_ARQUIVO" name="LJA_FILE_ARQUIVO" id="LJA_FILE_ARQUIVO" class="form-control">
+            <span asp-validation-for="LJA_FILE_ARQUIVO" class="text-danger"></span>
+        </div>
+    }
+</div>
+
+@if (Model != null)
+{
+    if ((bool)Model.LJA_BIT_CPF)
+    {
+        <div class="col-md-12">
+            <div class="form-check form-check-inline">
+                <input type="radio" id="LJA_BIT_CPF" onclick="MostraCpf()" name="LJA_BIT_CPF" class="form-check-input" checked value="true">
+                <label class="form-check-label" asp-for="LJA_BIT_CPF">Pessoa Física</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="radio" id="LJA_BIT_CPF" onclick="MostraCnpj()" name="LJA_BIT_CPF" class="form-check-input" value="false">
+                <label class="form-check-label" asp-for="LJA_BIT_CPF">Pessoa Júridica</label>
+            </div>
+            <br />
+            <span asp-validation-for="LJA_BIT_CPF" class="text-danger"></span>
+        </div>
+    }
+    else
+    {
+        <div class="col-md-12">
+            <div class="form-check form-check-inline">
+                <input type="radio" id="LJA_BIT_CPF" onclick="MostraCpf()" name="LJA_BIT_CPF" class="form-check-input" value="true">
+                <label class="form-check-label" asp-for="LJA_BIT_CPF">Pessoa Física</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input type="radio" id="LJA_BIT_CPF" onclick="MostraCnpj()" name="LJA_BIT_CPF" class="form-check-input" checked value="false">
+                <label class="form-check-label" asp-for="LJA_BIT_CPF">Pessoa Júridica</label>
+            </div>
+            <br />
+            <span asp-validation-for="LJA_BIT_CPF" class="text-danger"></span>
+        </div>
+    }
+}
+else
+{
+    <div class="col-md-12">
+        <div class="form-check form-check-inline">
+            <input type="radio" id="LJA_BIT_CPF" onclick="MostraCpf()" name="LJA_BIT_CPF" class="form-check-input" value="true">
+            <label class="form-check-label" asp-for="LJA_BIT_CPF">Pessoa Física</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input type="radio" id="LJA_BIT_CPF" onclick="MostraCnpj()" name="LJA_BIT_CPF" class="form-check-input" value="false">
+            <label class="form-check-label" asp-for="LJA_BIT_CPF">Pessoa Júridica</label>
+        </div>
+        <br />
+        <span asp-validation-for="LJA_BIT_CPF" class="text-danger"></span>
+    </div>
+}
+
+<br />
+<div class="row mb-3">
+    <div class="col-12 col-md-6" id="MostraCpf">
+        <label asp-for="LJA_STR_CNPJ_CPF" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="LJA_STR_CNPJ_CPF" id="LJA_STR_CPF" name="LJA_STR_CNPJ_CPF" placeholder="Digite o seu CPF." data-toggle="input-mask" data-mask-format="000.000.000-00" data-reverse="true" maxlength="14">
+        <span asp-validation-for="LJA_STR_CNPJ_CPF" class="text-danger"></span>
+    </div>
+    <div class="col-12 col-md-6 d-none" id="MostraCnpj">
+        <label asp-for="LJA_STR_CNPJ_CPF" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="LJA_STR_CNPJ_CPF" id="LJA_STR_CNPJ" placeholder="Digite o CNPJ da loja." data-toggle="input-mask" data-mask-format="00.000.000/0000-00" data-reverse="true" name="LJA_STR_CNPJ_CPF" maxlength="18">
+        <span asp-validation-for="LJA_STR_CNPJ_CPF" class="text-danger"></span>
+    </div>
+    <div class="col-12 col-md-6">
+        <label asp-for="LJA_STR_EMAIL" class="form-label"></label>
+        <input type="text" name="LJA_STR_EMAIL" asp-for="LJA_STR_EMAIL" id="LJA_STR_EMAIL" class="form-control" placeholder="Digite o email da loja.">
+        <span asp-validation-for="LJA_STR_EMAIL" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-12 col-md-6">
+        <label asp-for="LJA_STR_DESCRICAO" class="form-label"></label>
+        <textarea type="text" name="LJA_STR_DESCRICAO" asp-for="LJA_STR_DESCRICAO" id="LJA_STR_DESCRICAO" class="form-control" placeholder="Digite a descriçao da loja."></textarea>
+        <span asp-validation-for="LJA_STR_DESCRICAO" class="text-danger"></span>
+    </div>
+    <div class="col-12 col-md-6">
+        <label asp-for="LJA_STR_WHATSAPP" class="form-label"></label>
+        <input type="text" data-toggle="input-mask" data-mask-format="(00) 00000-0000" class="form-control" asp-for="LJA_STR_WHATSAPP" name="LJA_STR_WHATSAPP" id="LJA_STR_WHATSAPP" placeholder="Digite o whatsapp da loja." class="form-control">
+        <span asp-validation-for="LJA_STR_WHATSAPP" class="text-danger"></span>
+    </div>
+</div>
+<br />
+<h4 class="header-title mb-4">Endereço</h4>
+<div class="row mb-3">
+    <div class="col-12 col-md-4">
+        <label asp-for="Endereco.END_STR_CEP" class="form-label"></label>
+        <input type="text" name="Endereco.END_STR_CEP" asp-for="Endereco.END_STR_CEP" id="Endereco.END_STR_CEP" class="form-control" placeholder="Digite o cep da loja.">
+        <span asp-validation-for="Endereco.END_STR_CEP" class="text-danger"></span>
+    </div>
+    <div class="col-12 col-md-4">
+        <label asp-for="Endereco.END_STR_RUA" class="form-label"></label>
+        <input type="text" asp-for="Endereco.END_STR_RUA" name="Endereco.END_STR_RUA" id="Endereco.END_STR_RUA" class="form-control" placeholder="Digite a rua da loja.">
+        <span asp-validation-for="Endereco.END_STR_RUA" class="text-danger"></span>
+    </div>
+    <div class="col-12 col-md-2">
+        <label asp-for="Endereco.END_STR_NUMERO" class="form-label"></label>
+        <input type="text" asp-for="Endereco.END_STR_NUMERO" name="Endereco.END_STR_NUMERO" id="Endereco.END_STR_NUMERO" class="form-control" placeholder="Digite o número da loja.">
+        <span asp-validation-for="Endereco.END_STR_NUMERO" class="text-danger"></span>
+    </div>
+    <div class="col-12 col-md-2">
+        <label asp-for="Endereco.END_STR_CIDADE" class="form-label"></label>
+        <input type="text" asp-for="Endereco.END_STR_CIDADE" name="Endereco.END_STR_CIDADE" id="Endereco.END_STR_CIDADE" class="form-control" placeholder="Digite a cidade da loja.">
+        <span asp-validation-for="Endereco.END_STR_CIDADE" class="text-danger"></span>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-12 col-md-4">
+        <label asp-for="Endereco.END_STR_COMPLEMENTO" class="form-label"></label>
+        <input type="text" name="Endereco.END_STR_COMPLEMENTO" asp-for="Endereco.END_STR_COMPLEMENTO" id="Endereco.END_STR_COMPLEMENTO" class="form-control" placeholder="Digite o complemento da loja.">
+        <span asp-validation-for="Endereco.END_STR_COMPLEMENTO" class="text-danger"></span>
+    </div>
+    <div class="col-12 col-md-4">
+        <label asp-for="Endereco.END_STR_BAIRRO" class="form-label"></label>
+        <input type="text" asp-for="Endereco.END_STR_BAIRRO" name="Endereco.END_STR_BAIRRO" id="Endereco.END_STR_BAIRRO" class="form-control" placeholder="Digite o bairro da loja.">
+        <span asp-validation-for="Endereco.END_STR_BAIRRO" class="text-danger"></span>
+    </div>
+    <div class="col-12 col-md-4">
+        <label asp-for="Endereco.END_STR_ESTADO" class="form-label"></label>
+        <!-- Single Select -->
+        <select class="form-control select2" data-toggle="select2" asp-for="Endereco.END_STR_ESTADO" name="Endereco.END_STR_ESTADO" id="Endereco.END_STR_ESTADO" class="form-control">
+            <option value="0">Selecione o Estado</option>
+            @if (Model != null)
+            {
+                @foreach (var item in enumer)
+                {
+                    if (Convert.ToInt32(item) == Model.Endereco.END_STR_ESTADO)
+                    {
+                        <option value="@Convert.ToInt32(item)" selected>@ExtensaoEnumerador.GetDisplayName((EEstado)item)</option>
+                    }
+                    else
+                    {
+                        <option value="@Convert.ToInt32(item)">@ExtensaoEnumerador.GetDisplayName((EEstado)item)</option>
+                    }
+                }
+            }
+            else
+            {
+                @foreach (var item in enumer)
+                {
+                    <option value="@Convert.ToInt32(item)">@ExtensaoEnumerador.GetDisplayName((EEstado)item)</option>
+                }
+            }
+        </select>
+        <span asp-validation-for="Endereco.END_STR_ESTADO" class="text-danger"></span>
+    </div>
+</div>

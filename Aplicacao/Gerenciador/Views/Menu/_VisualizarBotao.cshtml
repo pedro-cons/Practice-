@@ -1,0 +1,296 @@
+﻿@* @model Dominio.ViewModels.LojaViewModel
+
+@using Dominio.Enumeradores
+@using Dominio.Helpers
+
+@{
+    Type type = typeof(EEstado);
+    var enumer = Enum.GetValues(type);
+}
+
+<h4 class="header-title text-center mb-4 mt-4">Botões</h4>
+<div class="row mb-3 py-2 bg-dragula p-2 p-lg-4" id="simple-dragula" data-plugin="dragula">
+    <br />
+    @if (Model != null)
+    {
+        var contador = 0;
+        foreach (var item in Model.Botao.OrderBy(e => e.BTN_INT_ORDEM))
+        {
+            switch (item.BTN_INT_TIPO)
+            {
+                case (int)ETipoBotao.Menu:
+                    <div class="card card-ord">
+                        <div class="row card-body cursor-move cartão mb-0">
+                                        <input type="hidden" asp-for="Botao[@{
+        @contador
+}].BTN_INT_IDF" name="Botao[@contador].BTN_INT_IDF" value="@item.BTN_INT_IDF" />
+                            <input type="hidden" asp-for="Botao[@{
+                @contador
+}].BTN_INT_TIPO" name="Botao[@contador].BTN_INT_TIPO" value="0" />
+                            <input type="hidden" asp-for="Botao[@{
+                @contador
+}].BTN_INT_ORDEM" name="Botao[@contador].BTN_INT_ORDEM" id="Botao[@contador].BTN_INT_ORDEM" ordem="@contador" class="ordem-botoes" value="@contador" />
+                            <input type="hidden" asp-for="Botao[@{
+                @contador
+}].BTN_BIT_ATIVO" name="Botao[@contador].BTN_BIT_ATIVO" value="true" />
+                            <div class="col-md-3 text-center">
+                                <label asp-for="Botao[@{
+                    @contador
+}].BTN_STR_NOME" class="form-label">Nome</label>
+                                <input type="text" asp-for="Botao[@{
+                    @contador
+}].BTN_STR_NOME" name="Botao[@contador].BTN_STR_NOME" id="Botao[@contador].BTN_STR_NOME" value="@item.BTN_STR_NOME" class="form-control" placeholder="Digite o nome do botão.">
+                                <span asp-validation-for="Botao[@{
+                    @contador
+}].BTN_STR_NOME" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-1 text-center">
+                                <label class="form-label" asp-for="Botao[@{
+                    @contador
+}].BTN_STR_COR">Cor</label>
+                                <input class="form-control" id="example-color" type="color" asp-for="Botao[@contador].BTN_STR_COR" name="Botao[@contador].BTN_STR_COR" value="@item.BTN_STR_COR">
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <label asp-for="Botao[@{
+                    @contador
+}].BTN_STR_LINK" class="form-label">Link</label>
+                                <input type="text" asp-for="Botao[@{
+                        @contador
+}].BTN_STR_LINK" name="Botao[@contador].BTN_STR_LINK" readonly id="Botao[@contador].BTN_STR_LINK" value="@( Configuracao.DNS +  "Menu/" + UrlAmigavel.TituloAmigavel(Model.LJA_STR_NOME) + "/" + Model.LJA_INT_IDF)" class="form-control" data-bs-trigger="hover" data-bs-placement="top" data-bs-toggle="popover" data-bs-content="Link do menu é gerado automáticamente pelo sistema." placeholder="Link do menu é gerado automáticamente pelo sistema.">
+                                <span asp-validation-for="Botao[@{
+                    @contador
+}].BTN_STR_LINK" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-2 text-center"></div>
+                        </div>
+                    </div>
+                    break;
+                case (int)ETipoBotao.LinkExterno:
+                    <div class="card card-ord card-remove@(contador)">
+                        <div class="row card-body cursor-move cartão mb-0 mt-3">
+                            <input type="hidden" asp-for="Botao[@{
+                @contador
+}].BTN_INT_TIPO" name="Botao[@contador].BTN_INT_TIPO" value="1" />
+                            <input type="hidden" asp-for="Botao[@{
+                @contador
+}].BTN_INT_ORDEM" name="Botao[@contador].BTN_INT_ORDEM" id="Botao[@contador].BTN_INT_ORDEM" ordem="@contador" class="ordem-botoes" value="@contador" />
+            <input type="hidden" asp-for="Botao[@{
+        @contador
+}].BTN_INT_IDF" name="Botao[@contador].BTN_INT_IDF" value="@item.BTN_INT_IDF" />
+                            <div class="col-md-3 text-center">
+                                <label class="form-label" for="Botao[@contador].BTN_STR_NOME">Nome</label>
+                                <input type="text" value="Link Externo" name="Botao[@contador].BTN_STR_NOME" id="Botao[@contador].BTN_STR_NOME" class="form-control" value="@item.BTN_STR_NOME" placeholder="Digite o nome do botão." data-val="true" data-val-maxlength="A quantidade máxima de caracteres permitida é 255." data-val-maxlength-max="255" data-val-required="O campo &quot;Nome&quot; é obrigatório." maxlength="255">
+                                @if (!string.IsNullOrEmpty(item.BTN_STR_NOME))
+                                {
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="Botao[@contador].BTN_STR_NOME" data-valmsg-replace="true"></span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="Botao[@contador].BTN_STR_NOME" data-valmsg-replace="true">O Campo "Nome" é obrigatório.</span>
+                                }
+                            </div>
+                            <div class="col-md-1 text-center">
+                                <label class="form-label" for="Botao[@contador].BTN_STR_COR">Cor</label>
+                                <input class="form-control" id="example-color" type="color" name="Botao[@contador].BTN_STR_COR" value="@item.BTN_STR_COR">
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <label class="form-label" for="Botao[@contador].BTN_STR_LINK">Link</label>
+                                <input type="text" value="https://portal-practice.com" name="Botao[@contador].BTN_STR_LINK" id="Botao[@contador].BTN_STR_LINK" class="form-control" placeholder="Digite o link do botão." data-val="true" data-val-maxlength="A quantidade máxima de caracteres permitida é 255." data-val-maxlength-max="255" data-val-required="O campo &quot;Link&quot; é obrigatório." maxlength="255" value="@item.BTN_STR_LINK">
+                                @if (!string.IsNullOrEmpty(item.BTN_STR_LINK))
+                                {
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="Botao[@contador].BTN_STR_LINK" data-valmsg-replace="true"></span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="Botao[@contador].BTN_STR_LINK" data-valmsg-replace="true">O Campo "Link" é obrigatório.</span>
+                                }
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <label class="mb-2">Habilitado</label><br>
+                                @if (item.BTN_BIT_ATIVO)
+                                {
+                                    <input type="checkbox" name="Botao[@contador].BTN_BIT_ATIVO" id="@(contador)BTN_BIT_ATIVO" value="true" checked onclick="mudaValorCheck('@(contador)BTN_BIT_ATIVO')" data-switch="success" />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" name="Botao[@contador].BTN_BIT_ATIVO" id="@(contador)BTN_BIT_ATIVO" value="false" onclick="mudaValorCheck('@(contador)BTN_BIT_ATIVO')" data-switch="success" />
+                                }
+                                <label for="@(contador)BTN_BIT_ATIVO" data-on-label="Sim" data-off-label="Não"></label>
+                            </div>
+                            <div class="mt-3 col-md-2 text-center">
+                                <button type="button" onclick="removeBotao('card-remove@(contador)',@contador)" class="btn btn-outline-danger rounded-pill"><i class="mdi mdi-delete"></i> Remover</button>
+                            </div>
+                        </div>
+                    </div>
+                    break;
+                case (int)ETipoBotao.WiFi:
+                    <div class="card card-ord card-remove@(contador)">
+                        <div class="row card-body cursor-move cartão mb-0 mt-3">
+                            <input type="hidden" asp-for="Botao[@{
+                @contador
+}].BTN_INT_TIPO" name="Botao[@contador].BTN_INT_TIPO" value="2" />
+                            <input type="hidden" asp-for="Botao[@{
+                @contador
+}].BTN_INT_ORDEM" name="Botao[@contador].BTN_INT_ORDEM" id="Botao[@contador].BTN_INT_ORDEM" ordem="@contador" class="ordem-botoes" value="@contador" />
+                            <input type="hidden" asp-for="Botao[@{
+            @contador
+}].BTN_INT_IDF" name="Botao[@contador].BTN_INT_IDF" value="@item.BTN_INT_IDF" />
+                            <div class="col-md-3 text-center">
+                                <label class="form-label" for="Botao[@contador].BTN_STR_NOME">Nome</label>
+                                <input type="text" value="Wi-fi" name="Botao[@contador].BTN_STR_NOME" id="Botao[@contador].BTN_STR_NOME" class="form-control" placeholder="Digite o nome do botão." data-val="true" data-val-maxlength="A quantidade máxima de caracteres permitida é 255." data-val-maxlength-max="255" data-val-required="O campo &quot;Nome&quot; é obrigatório." maxlength="255" value="@item.BTN_STR_NOME">
+                                @if (!string.IsNullOrEmpty(item.BTN_STR_NOME))
+                                {
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="Botao[@contador].BTN_STR_NOME" data-valmsg-replace="true"></span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="Botao[@contador].BTN_STR_NOME" data-valmsg-replace="true">O Campo "Nome" é obrigatório.</span>
+                                }
+                            </div>
+                            <div class="col-md-1 text-center">
+                                <label class="form-label" for="Botao[@contador].BTN_STR_COR">Cor</label>
+                                <input class="form-control" id="example-color" type="color" name="Botao[@contador].BTN_STR_COR" value="@item.BTN_STR_COR">
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <label class="form-label" for="Botao[@contador].BTN_STR_REDE">Wi-fi</label>
+                                <input type="text" name="Botao[@contador].BTN_STR_REDE" id="Botao[@contador].BTN_STR_REDE" class="form-control" placeholder="Digite nome da rede Wi-fi." value="@item.BTN_STR_REDE">
+                                @if (!string.IsNullOrEmpty(item.BTN_STR_REDE))
+                                {
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="Botao[@contador].BTN_STR_REDE" data-valmsg-replace="true"></span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="Botao[@contador].BTN_STR_REDE" data-valmsg-replace="true">O Campo "Wi-fi" é obrigatório.</span>
+                                }
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <label class="form-label" for="Botao[@contador].BTN_STR_SENHA">Senha</label>
+                                <input type="text" name="Botao[@contador].BTN_STR_SENHA" id="Botao[@contador].BTN_STR_SENHA" class="form-control" placeholder="Digite a senha da rede Wi-fi." value="@item.BTN_STR_SENHA">
+                                @if (!string.IsNullOrEmpty(item.BTN_STR_SENHA))
+                                {
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="Botao[@contador].BTN_STR_SENHA" data-valmsg-replace="true"></span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="Botao[@contador].BTN_STR_SENHA" data-valmsg-replace="true">O Campo "Senha" é obrigatório.</span>
+                                }
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <label class="mb-2">Habilitado</label><br>
+                                @if (item.BTN_BIT_ATIVO)
+                                {
+                                    <input type="checkbox" name="Botao[@contador].BTN_BIT_ATIVO" id="@(contador)BTN_BIT_ATIVO" value="true" checked onclick="mudaValorCheck('@(contador)BTN_BIT_ATIVO')" data-switch="success" />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" name="Botao[@contador].BTN_BIT_ATIVO" id="@(contador)BTN_BIT_ATIVO" value="false" onclick="mudaValorCheck('@(contador)BTN_BIT_ATIVO')" data-switch="success" />
+                                }
+                                <label for="@(contador)BTN_BIT_ATIVO" data-on-label="Sim" data-off-label="Não"></label>
+                            </div>
+                            <div class="mt-3 col-md-2 text-center">
+                                <button type="button" onclick="removeBotao('card-remove@(contador)',@contador)" class="btn btn-outline-danger rounded-pill"><i class="mdi mdi-delete"></i> Remover</button>
+                            </div>
+                        </div>
+                    </div>
+                    break;
+                case (int)ETipoBotao.Whatsapp:
+                    <div class="card card-ord card-remove@(contador)">
+                        <div class="row card-body cursor-move cartão mb-0 mt-3">
+                            <input type="hidden" asp-for="Botao[@{
+                @contador
+}].BTN_INT_TIPO" name="Botao[@contador].BTN_INT_TIPO" value="3" />
+                            <input type="hidden" asp-for="Botao[@{
+                @contador
+}].BTN_INT_ORDEM" name="Botao[@contador].BTN_INT_ORDEM" id="Botao[@contador].BTN_INT_ORDEM" ordem="@contador" class="ordem-botoes" value="@contador" />
+                            <input type="hidden" asp-for="Botao[@{
+            @contador
+}].BTN_INT_IDF" name="Botao[@contador].BTN_INT_IDF" value="@item.BTN_INT_IDF" />
+                            <div class="col-md-3 text-center">
+                                <label class="form-label" for="Botao[@contador].BTN_STR_NOME">Nome</label>
+                                <input type="text" value="Whatsapp" name="Botao[@contador].BTN_STR_NOME" id="Botao[@contador].BTN_STR_NOME" class="form-control" placeholder="Digite o nome do botão." data-val="true" data-val-maxlength="A quantidade máxima de caracteres permitida é 255." data-val-maxlength-max="255" data-val-required="O campo &quot;Nome&quot; é obrigatório." maxlength="255" value="@item.BTN_STR_NOME">
+                                @if (!string.IsNullOrEmpty(item.BTN_STR_NOME))
+                                {
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="Botao[@contador].BTN_STR_NOME" data-valmsg-replace="true"></span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="Botao[@contador].BTN_STR_NOME" data-valmsg-replace="true">O Campo "Nome" é obrigatório.</span>
+                                }
+                            </div>
+                            <div class="col-md-1 text-center">
+                                <label class="form-label" for="Botao[@contador].BTN_STR_COR">Cor</label>
+                                <input class="form-control" id="example-color" type="color" name="Botao[@contador].BTN_STR_COR" value="@item.BTN_STR_COR">
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <label for="Botao[@contador].BTN_STR_WHATSAPP" class="form-label">Whatsapp</label>
+                                <input type="text" data-toggle="input-mask" data-mask-format="(00) 00000-0000" class="form-control" name="Botao[@contador].BTN_STR_WHATSAPP" id="Botao[@contador].BTN_STR_WHATSAPP" placeholder="Digite o whatsapp da loja." data-val="true" data-val-maxlength="A quantidade máxima de caracteres permitida é 30." data-val-maxlength-max="30" data-val-required="O Campo &quot;Whatsapp&quot; é obrigatório." maxlength="15" value="@item.BTN_STR_WHATSAPP">
+                                @if (!string.IsNullOrEmpty(item.BTN_STR_WHATSAPP))
+                                {
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="Botao[@contador].BTN_STR_WHATSAPP" data-valmsg-replace="true"></span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger field-validation-valid" data-valmsg-for="Botao[@contador].BTN_STR_WHATSAPP" data-valmsg-replace="true">O Campo "Whatsapp" é obrigatório.</span>
+                                }
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <label class="mb-2">Habilitado</label><br>
+                                @if (item.BTN_BIT_ATIVO)
+                                {
+                                    <input type="checkbox" name="Botao[@contador].BTN_BIT_ATIVO" id="@(contador)BTN_BIT_ATIVO" value="true" checked onclick="mudaValorCheck('@(contador)BTN_BIT_ATIVO')" data-switch="success" />
+                                }
+                                else
+                                {
+                                    <input type="checkbox" name="Botao[@contador].BTN_BIT_ATIVO" id="@(contador)BTN_BIT_ATIVO" value="false" onclick="mudaValorCheck('@(contador)BTN_BIT_ATIVO')" data-switch="success" />
+                                }
+                                <label for="@(contador)BTN_BIT_ATIVO" data-on-label="Sim" data-off-label="Não"></label>
+                            </div>
+                            <div class="mt-3 col-md-2 text-center">
+                                <button type="button" onclick="removeBotao('card-remove@(contador)',@contador)" class="btn btn-outline-danger rounded-pill"><i class="mdi mdi-delete"></i> Remover</button>
+                            </div>
+                        </div>
+                    </div>
+                    break;
+                default:
+                    break;
+            }
+            contador++;
+        }
+    }
+    else
+    {
+        <div class="card card-ord">
+            <div class="row card-body cursor-move cartão mb-0">
+                <input type="hidden" asp-for="Botao[0].BTN_INT_TIPO" name="Botao[0].BTN_INT_TIPO" value="0" />
+                <input type="hidden" asp-for="Botao[0].BTN_INT_ORDEM" name="Botao[0].BTN_INT_ORDEM" id="Botao[0].BTN_INT_ORDEM" ordem="0" class="ordem-botoes" value="0" />
+                <input type="hidden" asp-for="Botao[0].BTN_BIT_ATIVO" name="Botao[0].BTN_BIT_ATIVO" value="true" />
+                <div class="col-md-3 text-center">
+                    <label asp-for="Botao[0].BTN_STR_NOME" class="form-label"></label>
+                    <input type="text" asp-for="Botao[0].BTN_STR_NOME" name="Botao[0].BTN_STR_NOME" id="Botao[0].BTN_STR_NOME" value="Menu" class="form-control" placeholder="Digite o nome do botão.">
+                    <span asp-validation-for="Botao[0].BTN_STR_NOME" class="text-danger"></span>
+                </div>
+                <div class="col-md-1 text-center">
+                    <label class="form-label" asp-for="Botao[0].BTN_STR_COR">Cor</label>
+                    <input class="form-control" id="example-color" type="color" asp-for="Botao[0].BTN_STR_COR" name="Botao[0].BTN_STR_COR" value="#10c469">
+                </div>
+                <div class="col-md-6 text-center">
+                    <label asp-for="Botao[0].BTN_STR_LINK" class="form-label"></label>
+                    <input type="text" asp-for="Botao[0].BTN_STR_LINK" name="Botao[0].BTN_STR_LINK" readonly id="Botao[0].BTN_STR_LINK" class="form-control" data-bs-trigger="hover" data-bs-placement="top" data-bs-toggle="popover" data-bs-content="Link do menu é gerado automáticamente pelo sistema." placeholder="Link do menu é gerado automáticamente pelo sistema.">
+                    <span asp-validation-for="Botao[0].BTN_STR_LINK" class="text-danger"></span>
+                </div>
+                <div class="col-md-2 text-center"></div>
+            </div>
+        </div>
+    }
+    <div id="divBotoes">
+    </div>
+</div>
+<div>
+    <h4 class="header-title text-center mb-4 mt-4">Adicionar Botões</h4>
+    <div class="text-center">
+        <button type="button" onclick="AdicionaBotao(1)" class="btn btn-outline-dark btn-sm rounded-pill">Link Externo</button>
+        <button type="button" onclick="AdicionaBotao(2)" class="btn btn-outline-dark btn-sm rounded-pill">Wi-Fi</button>
+        <button type="button" onclick="AdicionaBotao(3)" class="btn btn-outline-dark btn-sm rounded-pill">Whatsapp</button>
+    </div>
+    <br />
+</div> *@

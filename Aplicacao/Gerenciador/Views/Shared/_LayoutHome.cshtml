@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <title>@TempData["Titulo"] - @Dominio.Helpers.Configuracao.Aplicacao</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Uma aplicação com objetivo de evoluir o seu negócio" name="description" />
+    <meta content="@Dominio.Helpers.Configuracao.Aplicacao" name="author" />
+
+    <!-- Icone -->
+    <link rel="shortcut icon" href="~/favicon.ico">
+
+    <!-- Configuracao do Tema -->
+    <script src="~/assets/js/hyper-config.js"></script>
+
+    <!-- CSS Icones -->
+    <link href="~/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- CSS do App -->
+    <link href="~/assets/css/app-modern.min.css" rel="stylesheet" type="text/css" id="app-style" />
+</head>
+<body>
+    <!-- Inicio da Nav Bar -->
+    @await Html.PartialAsync("~/Views/Shared/LayoutHome/_Nav.cshtml")
+    <!-- Fim da Nav Bar -->
+    <!-- START HERO -->
+    @await Html.PartialAsync("~/Views/Shared/LayoutHome/_Header.cshtml")
+    <!-- END HERO -->
+    @RenderBody()
+
+    <!-- Inicio do Footer -->
+    @await Html.PartialAsync("~/Views/Shared/LayoutHome/_Footer.cshtml")
+
+    <!-- Fim do Footer -->
+    <!-- JS Vendor -->
+    <script src="assets/js/vendor.min.js"></script>
+
+    <!-- JS do App -->
+    <script src="assets/js/app.min.js"></script>
+</body>
+</html>

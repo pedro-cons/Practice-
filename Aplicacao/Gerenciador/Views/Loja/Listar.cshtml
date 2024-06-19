@@ -1,0 +1,47 @@
+﻿@{
+    TempData["Titulo"] = "Lojas";
+    Layout = "_LayoutInicio";
+}
+
+<!-- Título da página -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/Inicio">Inicio</a></li>
+                    <li class="breadcrumb-item active">Loja</li>
+                </ol>
+            </div>
+            <h4 class="page-title">Lojas</h4>
+        </div>
+    </div>
+</div>
+<!-- Título da página -->
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-sm-12">
+                        <div class="text-sm-end">
+                            <a href="/Loja/Cadastrar" class="btn btn-outline-primary">
+                                Nova Loja
+                                <i class="mdi mdi-store-plus ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    @await Html.PartialAsync("_TabelaLoja")
+                    @await Html.PartialAsync("_ModalExcluirLoja")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/assets/js/pages/Loja/Listar.js"></script>
+}

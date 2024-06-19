@@ -1,0 +1,97 @@
+﻿<div class="leftside-menu menuitem-active">
+
+    <!-- Logo Clara -->
+    <a href="/Inicio" class="logo logo-light">
+        <span class="logo-lg">
+            <img src="~/assets/img/Logo-light.png" alt="logo" height="50">
+        </span>
+        <span class="logo-sm">
+            <img src="~/assets/img/Logo-light.png" alt="small logo" height="50">
+        </span>
+    </a>
+
+    <!-- Logo Escura -->
+    <a href="/Inicio" class="logo logo-dark">
+        <span class="logo-lg">
+            <img src="~/assets/img/Logo-dark.png" alt="dark logo" height="50">
+        </span>
+        <span class="logo-sm">
+            <img src="~/assets/img/Logo-dark.png" alt="small logo" height="50">
+        </span>
+    </a>
+
+    <!-- Botão Menu -->
+    <button type="button" class="bg-transparent button-sm-hover p-0" data-bs-toggle="tooltip" data-bs-placement="right" aria-label="Show Full Sidebar">
+        <i class="ri-checkbox-blank-circle-line align-middle"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <div class="h-100 show" id="leftside-menu-container" data-simplebar="init">
+        <div class="simplebar-wrapper" style="margin: 0px;">
+            <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask">
+                <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                    <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;">
+                        <div class="simplebar-content" style="padding: 0px;">
+                            <!-- Usuario -->
+                            <div class="leftbar-user">
+                                <a href="/Usuario">
+                                    <img src="~/assets/img/Logo-light.png" alt="user-image" height="42" class="rounded-circle shadow-sm">
+                                    <span class="leftbar-user-name">@Dominio.Helpers.Sessao.Usuario.USU_STR_LOGIN</span>
+                                </a>
+                            </div>
+
+                            <!--- Sidemenu -->
+                            <ul class="side-nav">
+
+                                <li class="side-nav-title side-nav-item">Painel</li>
+
+                                <li class="side-nav-item menuitem-active">
+                                    <a href="/Inicio" class="side-nav-link">
+                                        <i class="uil-home-alt"></i>
+                                        <span> Inicio </span>
+                                    </a>
+                                </li>
+
+                                <li class="side-nav-title side-nav-item">Configuração do Site</li>
+
+                                <li class="side-nav-item">
+                                    <a data-bs-toggle="collapse" href="#MenuDigital" aria-expanded="false" aria-controls="MenuDigital" class="side-nav-link">
+                                        <i class="mdi mdi-store"></i>
+                                        <span> Menu Digital </span>
+                                        <span class="menu-arrow"></span>
+                                    </a>
+                                    <div class="collapse" id="MenuDigital">
+                                        <ul class="side-nav-second-level">
+                                            <li class="side-nav-item">
+                                                <a href="/Menu/BoasVindas" class="side-nav-link">
+                                                    <span> Boas Vindas </span>
+                                                </a>
+                                            </li>
+                                            <li class="side-nav-item">
+                                                <a href="/Menu/Produtos" class="side-nav-link">
+                                                    <span> Produtos </span>
+                                                </a>
+                                            </li>
+                                            <li class="side-nav-item">
+                                                <a href="/Menu/QrCode" class="side-nav-link">
+                                                    <span> Qr Code e Link </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                                <li class="side-nav-title side-nav-item">Análise</li>
+
+                                <li class="side-nav-title side-nav-item">Vendas</li>
+
+                            </ul>
+                            <!--- Fim Sidemenu -->
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="simplebar-placeholder" style="width: auto; height: 1837px;"></div>
+        </div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 201px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div>
+    </div>
+</div>
